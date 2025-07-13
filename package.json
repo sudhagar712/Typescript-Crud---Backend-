@@ -2,9 +2,12 @@
   "name": "typescript-crud---backend-",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "start": "ts-node-dev --respawn --transpile-only src/server.ts",
+  "dev": "nodemon --exec ts-node-dev --respawn --transpile-only src/server.ts",
+  "build":"tsc"
+  
   },
   "repository": {
     "type": "git",
@@ -19,6 +22,7 @@
   },
   "homepage": "https://github.com/sudhagar712/Typescript-Crud---Backend-#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "mongoose": "^8.16.0"
@@ -26,6 +30,7 @@
   "devDependencies": {
     "@types/express": "^5.0.3",
     "@types/node": "^24.0.3",
+    "nodemon": "^3.1.10",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"
   }
