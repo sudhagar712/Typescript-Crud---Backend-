@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Product from "../models/productModel";
+import { ApiFeatures } from "../utils/apiFeatures";
 
 // GET all products
 export const getAllproducts = async (
@@ -7,7 +8,16 @@ export const getAllproducts = async (
   res: Response
 ): Promise<void> => {
   try {
-    const products = await Product.find();
+
+      const resultsPerPage = 4;
+      const apiFeature = new ApiFeatures(Product.find(), req.query);
+
+      const products = await apiFeature
+        .search()
+        .filter()
+        .paginate(resultsPerPage).query;
+
+   
     res.status(200).json({ message: "All products fetched" ,Count: products.length , products });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
